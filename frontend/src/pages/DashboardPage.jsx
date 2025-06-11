@@ -30,13 +30,25 @@ const DashboardPage = () => {
         ) : (
           <>
             <div style={{ marginBottom: "1em" }}>{overview.message}</div>
+           <ul>
+  {overview.widgets.map((widget, idx) => (
+    <li key={idx} style={{ marginBottom: "1em" }}>
+      <b>{widget.type.replace('_', ' ')}:</b>{" "}
+      {Array.isArray(widget.value)
+        ? (
             <ul>
-              {overview.widgets.map((widget, idx) => (
-                <li key={idx}>
-                  <b>{widget.type}:</b> {widget.value}
+              {widget.value.map((item, i) => (
+                <li key={i}>
+                  {item.title ? <><b>{item.title}</b> ({item.created})</> : JSON.stringify(item)}
                 </li>
               ))}
             </ul>
+          )
+        : widget.value}
+    </li>
+  ))}
+</ul>
+
           </>
         )
       ) : (
