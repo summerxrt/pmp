@@ -23,52 +23,47 @@ A modular, full-stack productivity and security app—**custom-built for persona
 ---
 
 ## 🏗️ Project Structure
-
-```
-
 pmp/
 ├── backend/
-│   ├── core/
-│   │   ├── **init**.py
-│   │   ├── asgi.py
-│   │   ├── settings.py
-│   │   ├── urls.py
-│   │   └── wsgi.py
-│   ├── notes/
-│   ├── venv/
-│   ├── .gitignore
-│   ├── db.sqlite3
-│   └── manage.py
+│ ├── core/
+│ │ ├── init.py
+│ │ ├── asgi.py
+│ │ ├── settings.py
+│ │ ├── urls.py
+│ │ └── wsgi.py
+│ ├── notes/
+│ ├── venv/
+│ ├── .gitignore
+│ ├── db.sqlite3
+│ └── manage.py
 ├── frontend/
-│   ├── node\_modules/
-│   ├── public/
-│   ├── src/
-│   │   ├── api/
-│   │   │   └── authFetch.js
-│   │   ├── assets/
-│   │   ├── pages/
-│   │   │   ├── AIAggregatorPage.jsx
-│   │   │   ├── CVScannerPage.jsx
-│   │   │   ├── DashboardPage.jsx
-│   │   │   ├── LinktreePage.jsx
-│   │   │   ├── LoginPage.jsx
-│   │   │   ├── NotesPage.jsx
-│   │   │   └── SecurityPage.jsx
-│   │   ├── App.css
-│   │   ├── App.jsx
-│   │   ├── index.css
-│   │   └── main.jsx
-│   ├── .gitignore
-│   ├── eslint.config.js
-│   ├── index.html
-│   ├── package-lock.json
-│   ├── package.json
-│   ├── README.md
-│   └── vite.config.js
+│ ├── node_modules/
+│ ├── public/
+│ ├── src/
+│ │ ├── api/
+│ │ │ └── authFetch.js
+│ │ ├── assets/
+│ │ ├── pages/
+│ │ │ ├── AIAggregatorPage.jsx
+│ │ │ ├── CVScannerPage.jsx
+│ │ │ ├── DashboardPage.jsx
+│ │ │ ├── LinktreePage.jsx
+│ │ │ ├── LoginPage.jsx
+│ │ │ ├── NotesPage.jsx
+│ │ │ └── SecurityPage.jsx
+│ │ ├── App.css
+│ │ ├── App.jsx
+│ │ ├── index.css
+│ │ └── main.jsx
+│ ├── .gitignore
+│ ├── eslint.config.js
+│ ├── index.html
+│ ├── package-lock.json
+│ ├── package.json
+│ ├── README.md
+│ └── vite.config.js
 ├── .gitignore
 └── README.md
-
-````
 
 ---
 
