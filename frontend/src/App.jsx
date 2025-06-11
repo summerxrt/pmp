@@ -93,6 +93,7 @@ function App() {
           <Route path="/linktree" element={<RequireAuth><LinktreePage /></RequireAuth>} />
           <Route path="/profile" element={<RequireAuth><ProfilePage /></RequireAuth>} />
           <Route path="/dashboard" element={<RequireAuth><DashboardPage /></RequireAuth>} />
+          <Route path="/security" element={<RequireAuth><SecurityPage /></RequireAuth>} />
 
     
         </Routes>
