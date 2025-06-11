@@ -123,7 +123,7 @@ npm run dev
 
 * [x] Notes module (CRUD, JWT)
 * [x] Modular React routing and Nav
-* [ ] Dashboard widgets
+* [x] Dashboard widgets
 * [ ] Security tools integration
 * [ ] AI Journal MVP
 * [ ] API Aggregator & CV Scanner
