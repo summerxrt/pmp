@@ -22,3 +22,19 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Python/Django
+*.pyc
+__pycache__/
+env/
+venv/
+*.sqlite3
+db.sqlite3
+*.pot
+*.py[cod]
+*.so
+.Python
+
+# Django media/static (if you serve user uploads locally)
+media/
+staticfiles/
