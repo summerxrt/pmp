@@ -7,6 +7,8 @@ import AIAggregatorPage from "./pages/AIAggregatorPage";
 import CVScannerPage from "./pages/CVScannerPage";
 import LinktreePage from "./pages/LinktreePage";
 import LoginPage from "./pages/LoginPage";
+import ProfilePage from "./pages/ProfilePage.jsx";
+import { parseJwt } from "./api/jwtUtils";
 import "./App.css";
 
 // Auth checker: redirect to login if no token
@@ -26,6 +28,13 @@ function NavBar({ onLogout }) {
     navigate("/login");
   };
 
+  let username = "";
+  const token = localStorage.getItem("access_token");
+  if (token) {
+    const payload = parseJwt(token);
+    username = payload?.username || "";
+  }
+
   return (
     <nav style={{
       margin: "24px 0",
@@ -40,27 +49,34 @@ function NavBar({ onLogout }) {
       <Link to="/security" style={{ marginRight: 18, color: "#61dafb" }}>Security Tools</Link>
       <Link to="/ai-aggregator" style={{ marginRight: 18, color: "#61dafb" }}>API Aggregator</Link>
       <Link to="/cv-scanner" style={{ marginRight: 18, color: "#61dafb" }}>CV Scanner</Link>
-      <Link to="/linktree" style={{ color: "#61dafb", marginRight: 18 }}>Linktree</Link>
+      <Link to="/linktree" style={{ marginRight: 18, color: "#61dafb" }}>Linktree</Link>
       {loggedIn && (
-        <button
-          onClick={handleLogout}
-          style={{
-            background: "#232323",
-            color: "#fff",
-            padding: "7px 20px",
-            borderRadius: 7,
-            border: "none",
-            fontWeight: 600,
-            marginLeft: 14,
-            cursor: "pointer"
-          }}
-        >
-          Log Out
-        </button>
+        <>
+          <Link to="/profile" style={{ color: "#44cc44", marginRight: 18, fontWeight: "bold" }}>Profile</Link>
+          <span style={{ color: "#44cc44", marginRight: 18 }}>
+            Logged in as <b>{username}</b>
+          </span>
+          <button
+            onClick={handleLogout}
+            style={{
+              background: "#232323",
+              color: "#fff",
+              padding: "7px 20px",
+              borderRadius: 7,
+              border: "none",
+              fontWeight: 600,
+              marginLeft: 8,
+              cursor: "pointer"
+            }}
+          >
+            Log Out
+          </button>
+        </>
       )}
     </nav>
   );
 }
+
 
 function App() {
   return (
@@ -75,6 +91,10 @@ function App() {
           <Route path="/ai-aggregator" element={<RequireAuth><AIAggregatorPage /></RequireAuth>} />
           <Route path="/cv-scanner" element={<RequireAuth><CVScannerPage /></RequireAuth>} />
           <Route path="/linktree" element={<RequireAuth><LinktreePage /></RequireAuth>} />
+          <Route path="/profile" element={<RequireAuth><ProfilePage /></RequireAuth>} />
+          <Route path="/dashboard" element={<RequireAuth><DashboardPage /></RequireAuth>} />
+
+    
         </Routes>
       </div>
     </Router>

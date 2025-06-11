@@ -12,12 +12,19 @@ async function refreshAccessToken() {
   });
   if (!res.ok) return null;
   const data = await res.json();
-  localStorage.setItem("access_token", data.access);
-  return data.access;
+  if (data.access) {
+    localStorage.setItem("access_token", data.access);
+    return data.access;
+  }
+  return null;
 }
 
 // Main authFetch function
 export async function authFetch(url, options = {}, retry = true) {
+  // Always use full URL for local API calls
+  const base = "http://127.0.0.1:8000";
+  const fullUrl = url.startsWith("http") ? url : base + url;
+
   const accessToken = localStorage.getItem("access_token");
   const headers = {
     ...(options.headers || {}),
@@ -25,18 +32,17 @@ export async function authFetch(url, options = {}, retry = true) {
     ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {}),
   };
 
-  const res = await fetch(url, { ...options, headers, credentials: "include" });
+  let res = await fetch(fullUrl, { ...options, headers });
 
   if (res.status === 401 && retry) {
     // Try to refresh token
     const newAccessToken = await refreshAccessToken();
     if (newAccessToken) {
-      // Retry original request
       const retryHeaders = {
         ...headers,
         Authorization: `Bearer ${newAccessToken}`,
       };
-      return fetch(url, { ...options, headers: retryHeaders, credentials: "include" });
+      res = await fetch(fullUrl, { ...options, headers: retryHeaders });
     }
   }
 
